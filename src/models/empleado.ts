@@ -1,4 +1,4 @@
-import { model, Schema } from 'mongoose';
+import { model, Schema } from "mongoose";
 
 const empleadoSchema = new Schema(
   {
@@ -13,4 +13,4 @@ const empleadoSchema = new Schema(
   },
 );
 
-export default model('Empleado', empleadoSchema);
+export default model("Empleado", empleadoSchema);

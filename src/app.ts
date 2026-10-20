@@ -4,6 +4,7 @@ import { MongooseEmployeeRepository } from "./repositories/MongooseEmployeeRepos
 import { createEmployeeRoutes } from "./routes/empleados.routes.js";
 import { errorHandler } from "./middlewares/error.middleware.js";
 import cors from "cors";
+import authRoutes from "./routes/auth.routes.js";
 
 const app = express();
 
@@ -18,8 +19,9 @@ app.use(morgan("dev"));
 
 const employeeRepository = new MongooseEmployeeRepository();
 
-app.use("/api/v1", createEmployeeRoutes(employeeRepository));
+app.use("/api/v1/auth", authRoutes);
 
+app.use("/api/v1", createEmployeeRoutes(employeeRepository));
 app.use(errorHandler);
 
 export default app;
