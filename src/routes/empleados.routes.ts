@@ -10,6 +10,7 @@ import {
   employeeParamsSchema,
   updateEmployeeSchema,
 } from "../dtos/employee.dto.js";
+import { authenticateJWT } from "../middlewares/auth.middleware.js";
 
 export const createEmployeeRoutes = (
   employeeRepository: IEmployeeRepository,
@@ -21,17 +22,20 @@ export const createEmployeeRoutes = (
   router.get("/empleados/:id", controller.getEmpleadoById);
   router.post(
     "/empleados",
+    authenticateJWT,
     validateBody(createEmployeeSchema),
     controller.addEmpleado,
   );
   router.put(
     "/empleados/:id",
+    authenticateJWT,
     validateParams(employeeParamsSchema),
     validateBody(updateEmployeeSchema),
     controller.updateEmpleado,
   );
   router.delete(
     "/empleados/:id",
+    authenticateJWT,
     validateParams(employeeParamsSchema),
     controller.deleteEmpleado,
   );

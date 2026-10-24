@@ -4,6 +4,8 @@ import { MongooseEmployeeRepository } from "./repositories/MongooseEmployeeRepos
 import { createEmployeeRoutes } from "./routes/empleados.routes.js";
 import { errorHandler } from "./middlewares/error.middleware.js";
 import cors from "cors";
+import { MongooseAuthRepository } from "./repositories/MongooseAuthRepository.js";
+import { createAuthRoutes } from "./routes/auth.routes.js";
 
 const app = express();
 
@@ -17,7 +19,9 @@ app.use(express.json());
 app.use(morgan("dev"));
 
 const employeeRepository = new MongooseEmployeeRepository();
+const authRepository = new MongooseAuthRepository();
 
+app.use("/api/v1/auth", createAuthRoutes(authRepository));
 app.use("/api/v1", createEmployeeRoutes(employeeRepository));
 
 app.use(errorHandler);
