@@ -8,7 +8,7 @@ module.exports = {
 
       instances: 1,
 
-      env: {
+      env_production: {
         NODE_ENV: "production",
         PORT: 3000,
       },
