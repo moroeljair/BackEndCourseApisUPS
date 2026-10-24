@@ -11,7 +11,10 @@ const app = express();
 
 app.use(
   cors({
-    origin: "http://localhost:4200",
+    origin: [
+      "http://localhost:4200",
+      "https://jair-morocho-practice-front-frcaepdpfuc3cseg.brazilsouth-01.azurewebsites.net",
+    ],
   }),
 );
 
